@@ -1,0 +1,47 @@
+<h1 style="color: forestgreen" class="m-lg-5">Đăng nhập</h1>
+<div class="container">
+  <div class="col-5">
+    <form class="form-control" [formGroup]="loginForm" (ngSubmit)="check()"  >
+
+
+      <div class="row">
+        <div class="col-2">
+          <label> Tài khoản: </label>
+        </div>
+        <div class="col-10">
+          <input type="text" placeholder="Nhập tên tài khoản" formControlName="account">
+        </div>
+
+        <div *ngIf="!account?.valid && (account?.dirty || account?.touched)">
+          <div [hidden]="!account?.errors?.['required']">
+            <p style="color: red"> Không để trống tài khoản </p>
+          </div>
+          <div [hidden]="!account?.errors?.['minlength']">
+            <p style="color: red"> Độ dài ít nhất là 5 kí tự </p>
+          </div>
+        </div>
+
+      </div>
+      <div class="row mt-3">
+        <div class="col-2">
+          <label> Mật khẩu: </label>
+        </div>
+        <div class="col-10">
+          <input type="password" placeholder="Nhập mật khẩu" formControlName="password">
+        </div>
+        <div *ngIf="!password?.valid && (password?.dirty || password?.touched)">
+          <div [hidden]="!password?.errors?.['required']">
+            <p style="color: red"> Không để trống mật khẩu </p>
+          </div>
+          <div [hidden]="!password?.errors?.['minlength']">
+            <p style="color: red"> Độ dài ít nhất 5 kí tự </p>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <input class=" col-4 mt-3" type="submit" value="Đăng nhập" [disabled]="!loginForm.valid" >
+      </div>
+    </form>
+  </div>
+
+</div>
